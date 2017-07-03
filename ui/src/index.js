@@ -3,5 +3,29 @@ import ReactDOM from 'react-dom';
 
 import App from './app';
 import MainScene from './scenes/Main/';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 
-ReactDOM.render(<MainScene />, document.getElementById('app'));
+const BasicExample = () => (
+    <Router>
+        <div>
+            <ul>
+                <li><Link to='/'>Home</Link></li>
+                <li><Link to='/about'>About</Link></li>
+            </ul>
+
+            <hr />
+
+            <Route
+                component={MainScene}
+                exact path='/'
+            />
+        </div>
+    </Router>
+)
+
+
+ReactDOM.render(<BasicExample />, document.getElementById('app'));
