@@ -1,0 +1,23 @@
+version: '2'
+services:
+  vidhost:
+    restart: always
+    build: .
+    volumes:
+    - ./storage:/usr/src/app/storage
+    environment:
+    - DATABASE_HOST=postgres
+    - DATABASE_USER=postgres
+    - DATABASE_PASSWORD=postgres
+    - DATABASE_NAME=vidhost
+    - STORAGE_ROOT=./storage
+    - GOOGLE_CLIENT_ID=579034986411-hc2boj9864546gep2qagsn29ng45logb.apps.googleusercontent.com
+    - GOOGLE_CLIENT_SECRET=4Q-8tt60yfiFbU5ODYu0FBCD
+    ports:
+    - "3000:3000"
+  postgres:
+    image: postgres:9-alpine
+    environment:
+    - POSTGRES_DB=vidhost
+    volumes:
+    - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
