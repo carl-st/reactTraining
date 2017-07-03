@@ -40,8 +40,8 @@ app.use(passport.session());
 router.get(routesRegex, serve(__dirname + '/public/'));
 
 
-router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
-router.get('/auth/google/callback', passport.authenticate('google', {
+router.get('/api/auth/google', passport.authenticate('google', { scope: ['profile'] }));
+router.get('/api/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/'
 }));
 

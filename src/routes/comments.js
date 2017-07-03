@@ -7,7 +7,7 @@ const Comment = require('../models/comment');
 
 const getCommentByID = utils.getResourceByIDFactory(Comment);
 
-router.delete('/:id', utils.verifyAuthenticated, async ctx => {
+router.delete('/api/:id', utils.verifyAuthenticated, async ctx => {
     const comment = getCommentByID(ctx);
     await comment.destroy();
 

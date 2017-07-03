@@ -176,3 +176,7 @@ body .no-padding {
 .hidden {
 	visibility: hidden;
 }
+
+.status-upload > form.video-area  div:first-of-type {
+    width: 100% !important;
+}

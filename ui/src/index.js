@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './app';
 import MainScene from './scenes/Main/';
+import VideosScene from './scenes/Videos/';
 import {
     BrowserRouter as Router,
     Route,
@@ -14,7 +15,7 @@ const BasicExample = () => (
         <div>
             <ul>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/about'>About</Link></li>
+                <li><Link to='/videos'>About</Link></li>
             </ul>
 
             <hr />
@@ -22,6 +23,10 @@ const BasicExample = () => (
             <Route
                 component={MainScene}
                 exact path='/'
+            />
+            <Route
+                component={VideosScene}
+                exact path='/videos'
             />
         </div>
     </Router>

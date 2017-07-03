@@ -12,7 +12,7 @@ const router = require('koa-router')();
 const utils = require('../utils');
 const Video = require('../models/video');
 
-router.get('/', async ctx => {
+router.get('/api/', async ctx => {
     const videos = await Video.fetchPage({
         page: ctx.query.page,
         pageSize: ctx.query.limit
@@ -24,7 +24,7 @@ router.get('/', async ctx => {
     };
 });
 
-router.post('/', utils.verifyAuthenticated, async ctx => {
+router.post('/api/', utils.verifyAuthenticated, async ctx => {
     const busboy = new Busboy({
         headers: ctx.headers
     });
@@ -62,11 +62,11 @@ router.post('/', utils.verifyAuthenticated, async ctx => {
 
 const getVideoByID = utils.getResourceByIDFactory(Video);
 
-router.get('/:id', async ctx => {
+router.get('/api/:id', async ctx => {
     ctx.body = await getVideoByID(ctx);
 });
 
-router.get('/:id/stream', utils.range(), async ctx => {
+router.get('/api/:id/stream', utils.range(), async ctx => {
     const video = await getVideoByID(ctx);
     const readOptions = {};
 
@@ -81,7 +81,7 @@ router.get('/:id/stream', utils.range(), async ctx => {
     ctx.body = fs.createReadStream(video.get('path'), readOptions);
 });
 
-router.get('/:id/stream/:resolution', utils.range(), async ctx => {
+router.get('/api/:id/stream/:resolution', utils.range(), async ctx => {
     const video = await getVideoByID(ctx);
     const format = await video.videoFormats().query('where', {resolution: ctx.params.resolution}).fetchOne();
 
@@ -102,7 +102,7 @@ router.get('/:id/stream/:resolution', utils.range(), async ctx => {
     ctx.body = fs.createReadStream(`${video.get('path')}_${format.get('resolution')}`, readOptions);
 });
 
-router.get('/:id/comments', async ctx => {
+router.get('/api/:id/comments', async ctx => {
     const video = await getVideoByID(ctx);
     // FIXME: using array as an argument for fetchPage is a workaround for https://github.com/tgriesser/bookshelf/pull/1469
     const comments = await video.related('comments').fetchPage([{
