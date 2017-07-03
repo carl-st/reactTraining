@@ -21,6 +21,7 @@ RUN apk add --update build-base curl nasm tar bzip2 \
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
+copy public/ /usr/src/app/src
 
 RUN npm install --production
 

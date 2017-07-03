@@ -165,3 +165,14 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# vs code files
+.vscode
+.history
+
+# public folder
+public/*
+
+# public folder
+!public/index.html
+!public/styles.css

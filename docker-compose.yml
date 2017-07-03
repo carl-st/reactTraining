@@ -5,6 +5,8 @@ services:
     build: .
     volumes:
     - ./storage:/usr/src/app/storage
+    - ./public:/usr/src/app/src/public
+    - ./src:/usr/src/app/src/
     environment:
     - DATABASE_HOST=postgres
     - DATABASE_USER=postgres

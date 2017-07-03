@@ -7,6 +7,7 @@ const bodyParser = require('koa-bodyparser');
 const session = require('koa-session');
 const passport = require('koa-passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const serve = require('koa-static');
 
 const Koa = require('koa');
 const app = new Koa();
@@ -34,13 +35,11 @@ app.use(session(app));
 app.use(passport.initialize());
 app.use(passport.session());
 
-router.get('/', ctx => {
-    if (ctx.isAuthenticated()) {
-        ctx.body = `Hello, ${ctx.state.user.displayName}!`;
-    } else {
-        ctx.body = 'My cool video hosting API';
-    }
-});
+
+ const routesRegex = /^(?!\/public|\/js|js\/$).*/;
+router.get(routesRegex, serve(__dirname + '/public/'));
+
+
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }));
 router.get('/auth/google/callback', passport.authenticate('google', {
     successRedirect: '/'
@@ -51,6 +50,8 @@ router.use('/videos', require('./routes/videos').routes());
 router.use('/comments', require('./routes/comments').routes());
 router.use('/users', require('./routes/users').routes());
 
+
 app.use(router.routes());
+app.use(serve(__dirname + '/public'));
 
 app.listen(3000);

@@ -9,9 +9,9 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, './ui/public/js'),
+        path: path.resolve(__dirname, './public/js'),
         filename: '[name].js',
-        publicPath: '/ui/public/'
+        publicPath: '/public/'
     },
 
     module: {
