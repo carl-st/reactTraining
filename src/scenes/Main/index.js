@@ -25,7 +25,7 @@ const List = (props) => {
 };
 
 List.propTypes = {
-    posts: PropTypes.arrayOf(PropTypes.shape({
+    texts: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string,
     }))
 };
@@ -35,7 +35,7 @@ const ListElement = (props) => {
 };
 
 ListElement.propTypes = {
-    text: PropTypes.string
+    children: PropTypes.children
 };
 
 const storageKey = 'texts';
