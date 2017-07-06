@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 
 class Form extends Component {
     constructor(props) {
@@ -12,15 +13,15 @@ class Form extends Component {
     }
 
     onTextAreaSubmit(event) {
-         event.preventDefault();
-         const { text } = this.state;
-         const { onHandleSubmit } = this.props
-         onHandleSubmit({
+        event.preventDefault();
+        const { text } = this.state;
+        const { onHandleSubmit } = this.props
+        onHandleSubmit({
             text: text
-         })
-         this.setState({
+        })
+        this.setState({
             text: text
-         })
+        })
     }
 
     onHandleChange(event) {
@@ -33,8 +34,6 @@ class Form extends Component {
                 <div className='row'>
                     <h3>Write something</h3>
                 </div>
-            
-
                 <div className='row'>
                     <form onSubmit={this.onTextAreaSubmit}> 
                         <textarea 
@@ -46,9 +45,14 @@ class Form extends Component {
                             className='btn btn-success green'
                             type='submit'>
                             <i className='fa fa-share' />
-                            Submit
+                          Submit
                         </button>
                     </form>
+                </div>
+                <div className='row'>
+                    <button className='btn btn-success green'>
+                        <Link to='/result'>Show Result</Link>
+                    </button>
                 </div>
             </div>
         );

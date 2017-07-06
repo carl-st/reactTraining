@@ -35,7 +35,7 @@ const ListElement = (props) => {
 };
 
 ListElement.propTypes = {
-    children: PropTypes.children
+    children: PropTypes.string
 };
 
 const storageKey = 'texts';

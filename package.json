@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --progress --color --display-error-details",
     "dev": "webpack --watch --progress --color --display-error-details",
-    "serve": "webpack-dev-server --content-base public/"
+    "serve": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --content-base public/"
   },
   "author": "",
   "license": "ISC",
